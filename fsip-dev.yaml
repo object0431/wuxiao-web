@@ -1,0 +1,27 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: fsip-web
+  namespace: fsip
+  labels:
+    k8s-app: fsip-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: fsip-web
+  template:
+    metadata:
+      name: fsip-web
+      labels:
+        k8s-app: fsip-web
+    spec:
+      containers:
+        - name: fsip-web
+          image: 'harbor.dcos.xixian.unicom.local/img-freerdhn/fsip-web'
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 1Gi
+            limits:
+              memory: 1Gi

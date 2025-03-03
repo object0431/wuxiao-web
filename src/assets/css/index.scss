@@ -1,0 +1,337 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+body {
+    // background-color: #fff;
+}
+
+// #app{
+//     padding: 0;
+// }
+
+textarea {
+    //font-family: Arial, Helvetica, sans-serif;
+    //修改点[1]
+    resize: none;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+//页头
+.head-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: PingFang-SC-Heavy;
+    font-size: 14px;
+    color: #040404;
+    letter-spacing: 0;
+    font-weight: 800;
+
+    &::before {
+        content: '';
+        width: 3px;
+        height: 12px;
+        background-color: #5991FF;
+        margin-right: 10px;
+    }
+
+}
+
+.mainRedButton {
+    //主要红色： 查询 确认 发布 新增 提交 搜索 添加（产品、触点、合作伙伴等）
+    color: #fff;
+    border-color: #5991FF;
+    background: #5991FF;
+    line-height: 1.5715;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
+    span {
+        display: inline-block;
+    }
+    margin: 5px;
+}
+.mainRedButton_copy {
+    //主要红色： 查询 确认 发布 新增 提交 搜索 添加（产品、触点、合作伙伴等）
+    color: #fff;
+    border-color: #5991FF;
+    background: #5991FF;
+    line-height: 1.5715;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 2px;
+    span {
+        display: inline-block;
+    }
+}
+
+.mainRedButton:hover {
+    color: #fff;
+    background-color: #5991FF !important;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+    content: '';
+
+    &.is-disabled {
+        color: #C0C4CC !important;
+        cursor: not-allowed;
+        background-image: none !important;
+        background-color: #FFFFFF !important;
+        border-color: #EBEEF5 !important;
+    }
+}
+
+.mainRedButton:focus {
+    color: #fff;
+    border-color: #5991FF;
+    background: #5991FF;
+}
+
+.mainRedButton:active {
+    color: #fff;
+    background-color: #5991FF;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+    content: '';
+}
+
+.minorRedButton {
+    // 次要红色:重置、导入、导出、下载 时间选择 维度选择 换页 页码
+    color: #5991FF;
+    border-color: #5991FF;
+    background: #fff;
+    line-height: 1.5715;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
+    margin: 5px;
+}
+.minorRedButton_copy {
+    // 次要红色:重置、导入、导出、下载 时间选择 维度选择 换页 页码
+    color: #5991FF;
+    border-color: #5991FF;
+    background: #fff;
+    line-height: 1.5715;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 2px;
+}
+
+.minorRedButton:hover {
+    color: #c21013;
+    border-color: #c21013 !important;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+    content: '';
+    background: none !important;
+
+    &.is-disabled {
+        color: #C0C4CC !important;
+        cursor: not-allowed;
+        background-image: none !important;
+        background-color: #FFFFFF !important;
+        border-color: #EBEEF5 !important;
+    }
+}
+
+.minorRedButton:focus {
+    color: #c21013;
+    border-color: #c21013;
+    background: #fff;
+}
+
+.minorRedButton:active {
+    color: #c21013;
+    border-color: #5991FF;
+    background-color: #5991FF;
+}
+
+.minorGrayButton {
+    //次要灰色： 清空 取消
+    color: grey;
+    border-color: #d9d9d9;
+    background: #fff;
+    line-height: 1.5715;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 2px;
+    float: left;
+    margin: 5px;
+}
+.minorGrayButton_copy {
+    //次要灰色： 清空 取消
+    color: grey;
+    border-color: #d9d9d9;
+    background: #fff;
+    line-height: 1.5715;
+    position: relative;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 13px;
+    border-radius: 2px;
+}
+
+.minorGrayButton:hover {
+    color: grey !important;
+    border-color: #d9d9d9;
+    background: none !important;
+}
+
+.minorGrayButton:focus {
+    color: grey;
+    border-color: #d9d9d9;
+    background: #fff;
+}
+
+.minorGrayButton:active {
+    color: #9C9E9F;
+    background-color: #D9D9D9;
+    border-color: #D9D9D9;
+}
+
+// 文字按钮蓝
+.main-text-blue {
+    color: #3377FF;
+    cursor: pointer;
+
+    &:hover {
+        color: #3377FF;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+    }
+
+    &:active {
+        color: #3377FF !important;
+    }
+
+    &:focus {
+        color: #3377FF;
+    }
+
+    &[disabled] {
+        color: #d9d9d9 !important;
+    }
+}
+
+//表格操作按钮
+.table-btn {
+    color: #3377FF;
+    font-size: 16px;
+    margin-right: 10px;
+
+    &:hover {
+        // color: #5991FF;
+        cursor: pointer;
+    }
+}
+
+.table-btn-disabled {
+    color: #bfbfbf;
+    font-size: 16px;
+    margin-right: 10px;
+
+    &:hover {
+        cursor: not-allowed;
+    }
+}
+
+/* //滚动条整体部分 */
+div::-webkit-scrollbar,
+ul::-webkit-scrollbar,
+main::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* //滚动条的轨道（里面装有Thumb） */
+div::-webkit-scrollbar-track,
+ul::-webkit-scrollbar-track,
+main::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track {
+    background: rgb(239, 239, 239);
+    border-radius: 2px;
+}
+
+/* //滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条） */
+div::-webkit-scrollbar-thumb,
+ul::-webkit-scrollbar-thumb,
+main::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb {
+    background: #bfbfbf;
+    border-radius: 8px;
+}
+
+div::-webkit-scrollbar-thumb:hover,
+ul::-webkit-scrollbar-thumb:hover,
+main::-webkit-scrollbar-thumb:hover,
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #999;
+    cursor: pointer;
+}
