@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "run dev",
+    "i": "yarn install",
+    "start": "npm run dev",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "devtest": "vue-cli-service build --mode devtest"
