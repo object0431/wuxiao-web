@@ -181,7 +181,7 @@ import {
       async getApprovalInfo() {
         try {
           const res = await getApprovalInfoAll({"approvalType": "LXSQ","extId": ""})
-          console.log(res);
+          console.log('getApprovalInfo', res);
           
           if (res.rspCode === '0000') {
             const list = JSON.parse(JSON.stringify(res.rspBody))
@@ -206,6 +206,7 @@ import {
           this.$message.error(this.tipValue || '未找到审批人员信息，请联系管理员配置2')
           return
         }
+        console.log('this.handleForm', this.handleForm)
         this.$refs.handleForm.validate(async valid => {
           if (valid) {
             this.$confirm(

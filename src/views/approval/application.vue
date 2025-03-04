@@ -255,6 +255,8 @@ export default {
         let {companyId,companyName,deptId, deptName, emailAddress, empName, mobileTel } =
             JSON.parse(sessionStorage.getItem("userInfo"));
         this.userInfo = { companyName, deptName, emailAddress, empName, mobileTel,companyId,deptId}
+        console.log('this.userInfo', this.userInfo)
+        console.log('this.$route.params', this.$route.params)
         if(this.$route.params.isWhere){
             this.isWorkBench=true
         }

@@ -7,3 +7,9 @@ pnpm-debug
 auto-*.d.ts
 .idea
 .history
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
