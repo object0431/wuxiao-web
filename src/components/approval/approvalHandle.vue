@@ -38,7 +38,7 @@
             </el-input>
           </el-col>
         </el-form-item>
-          <el-form-item v-for="(item, index) in handleForm.approvalInfoList" :label="'办理步骤' + (index + 1)" :key="item.nodeCode" required>
+          <el-form-item v-for="(item, index) in handleForm.approvalInfoList" :label="'办理步骤' + (index + 1)" :key="item.nodeCode" :required="item.nodeCode !== 'PFGLD'">
           <el-col :span="8">
             <el-form-item>
               <span>{{item.nodeName}}</span>
@@ -46,10 +46,10 @@
           </el-col>
           <el-col :span="5">
             <el-form-item :prop="'approvalInfoList.' + index + '.approveName'" :rules="{
-              required: true, message: '审核人不能为空', trigger: 'change'
+              required: item.nodeCode !== 'PFGLD', message: '审核人不能为空', trigger: 'change'
             }">
               <el-select v-model="handleForm.approvalInfoList[index].approveName" placeholder="请选择"
-                :popper-append-to-body="false" :ref="'unitTreeSelect' + index">
+                :popper-append-to-body="false" :ref="'unitTreeSelect' + index" @change="(e) => selectApproveItem(index, e)">
                 <el-option v-for="item1 in item.officerList" :key="item1.staffId" :label="item1.staffName" :value="item1.staffName"></el-option>
               </el-select>
             </el-form-item>
@@ -114,7 +114,8 @@ import {
         },
         visibleStaff:false,
         isSubMit:true,
-        tipValue:""
+        tipValue:"",
+        currentNodeMap: {}
       }
     },
     created() {
@@ -180,7 +181,7 @@ import {
       // 审批人信息查询
       async getApprovalInfo() {
         try {
-          const res = await getApprovalInfoAll({"approvalType": "LXSQ","extId": ""})
+          const res = await getApprovalInfoAll({"approvalType": "LXSQ","extId": "","hasProvince": "1"})
           console.log('getApprovalInfo', res);
           
           if (res.rspCode === '0000') {
@@ -199,6 +200,11 @@ import {
         } catch (error) {
           this.$message.error('网络错误')
         }
+      },
+      selectApproveItem(index, e){
+        // console.log('index', index)
+        // console.log('e', e)
+        this.currentNodeMap[index] = e
       },
       //提交
       onSubmit() {
@@ -219,17 +225,14 @@ import {
               }
             ).then(() => {
               //处理审批人数据
-              this.handleForm.approvalInfoList.map(item=>{
-                //查找审批人id
-                let obj = item.officerList.find(item1=>item1.staffName==item.approveName)
-                item.approveId =obj.staffId
-                //删除多余数据
-                delete item.officerList
-              })
+              let formData = this.computeNodeResult()
+              console.log(formData)
               this.$emit("submit", {
-                ...this.handleForm,
+                ...formData,
               });
-            }) .catch(() => {
+            }) .catch((e) => {
+              console.log(e)
+
               this.$message({
                 type: "info",
                 message: "已取消"
@@ -237,6 +240,22 @@ import {
             })
           }
         })
+      },
+      computeNodeResult(){
+        let result = []
+        let formData = JSON.parse(JSON.stringify(this.handleForm))
+        let list = formData.approvalInfoList;
+        for (let i = 0; i < list.length; i++){
+          let item = list[i]
+          if(this.currentNodeMap[i]){
+            let obj = item.officerList.find(item1=>item1.staffName==this.currentNodeMap[i])
+            item.approveId =obj.staffId;
+            delete item.officerList
+            result.push(item)
+          }
+        }
+        formData.approvalInfoList = result
+        return formData;
       },
       close() {
         this.$emit('close')
