@@ -152,9 +152,9 @@
                     <el-tooltip class="item" content="审核" placement="top" popper-class="testtooltip">
                         <i class="table-btn el-icon-place" @click="goExamine(scope.row.projectId)"></i>
                     </el-tooltip>
-                    <!-- <el-tooltip class="item" content="发起咨询" placement="top" popper-class="testtooltip">
+                    <el-tooltip class="item" content="发起咨询" placement="top" popper-class="testtooltip">
                         <i style="font-size: 18px" class="el-icon-chat-line-round table-btn" @click="goConsult(scope.row.projectId)"></i>
-                    </el-tooltip> -->
+                    </el-tooltip>
                 </template>
             </el-table-column>
         </el-table>
