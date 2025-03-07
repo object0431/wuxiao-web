@@ -125,15 +125,7 @@
             <el-table-column prop="economicBenefit" label="预期效益（万元）"></el-table-column>  
             <el-table-column prop="status" label="状态">
                 <template slot-scope="scope">
-                    <span v-if="scope.row.status == '00'">审批完成</span>
-                    <span v-if="scope.row.status == '01'">部门领导审批</span>
-                    <span v-if="scope.row.status == '02'">分管领导审批</span>
-                    <span v-if="scope.row.status == '03'">工会主席审批</span>
-                    <span v-if="scope.row.status == '04'">评审委员会审批</span>
-                    <span v-if="scope.row.status == '05'">转发他人审批</span>
-                    <span v-if="scope.row.status == 'TH'">退回修改</span>
-                    <span v-if="scope.row.status == 'CH'">撤回</span>
-                    <span v-if="scope.row.status == 'ZC'">暂存</span>
+                    <span>{{ handleStatus(scope.row) }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="操作" width="80" fixed="right">
@@ -227,23 +219,57 @@ export default {
         this.qryAllOrg();
     },
     methods: {
-        //查询
-        async queryApprovalApply() {
-            this.tableLoading = true
-            let param={pageNum:this.pageParam.pageNum,pageSize:this.pageParam.pageSize}
-            const res = await queryProject({
-                ...this.form, ...param
-            })
-            
-            if (res.dataList) {
-                this.tableLoading = false
-                res.dataList.map((item)=>{
-                    item.startTime=item.startTime.slice(0,10)
-                    item.endTime=item.endTime.slice(0,10)
-                })
-                this.tableData = res.dataList
-                this.pageParam.total = res.total
-            } else {
+        handleStatus(row) {
+          if (row.status == '00'){
+            return '审批完成'
+          } else {
+
+            if(row.apprNodeCode == 'PBMLDSP'){
+              return '省分部门领导审批'
+            }else if (row.apprNodeCode == 'PFGFLD'){
+              return '省分工会副主席审批'
+            }else if (row.apprNodeCode == 'PFGLD'){
+              return '省分工会主席审批'
+            }else {
+              if (row.status == '01'){
+                return '部门领导审批'
+              }else if (row.status == '02'){
+                return '分管领导审批'
+              }else if (row.status == '03'){
+                return '工会主席审批'
+              }else if (row.status == '04'){
+                return '评审委员会审批'
+              }else if (row.status == '05'){
+                return '转发他人审批'
+              }else if (row.status == 'TH'){
+                return '退回修改'
+              }else if(row.status == 'CH'){
+                return '撤回'
+              }else if(row.status == 'ZC'){
+                return '暂存'
+              }
+            }
+
+          }
+          return '';
+        },
+      //查询
+      async queryApprovalApply() {
+        this.tableLoading = true
+        let param = {pageNum: this.pageParam.pageNum, pageSize: this.pageParam.pageSize}
+        const res = await queryProject({
+          ...this.form, ...param
+        })
+
+        if (res.dataList) {
+          this.tableLoading = false
+          res.dataList.map((item) => {
+            item.startTime = item.startTime.slice(0, 10)
+            item.endTime = item.endTime.slice(0, 10)
+          })
+          this.tableData = res.dataList
+          this.pageParam.total = res.total
+        } else {
                 this.tableLoading = false
                 this.tableData = []
                 this.pageParam.total=0
