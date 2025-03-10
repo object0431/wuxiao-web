@@ -248,7 +248,7 @@
          <div class="container" v-show="type !== 'edit'">
           <div class="text">附件下载</div>
           <div class="downloadBox">
-          <div class="downloadItem" v-for="item in form.appendixList" :key="item">
+          <div class="downloadItem" v-for="(item,index) in form.appendixList" :key="index">
             <a class="el-upload-list__item-name"><i class="el-icon-document">{{item.originalFilename || ''}}</i></a>
             <div class="downBtn" @click="downFile(item)">下载附件</div>
           </div>

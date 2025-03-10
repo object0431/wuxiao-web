@@ -319,18 +319,18 @@
               @click="goView(scope.row.projectId)"
             ></i>
           </el-tooltip>
-          <!-- <el-tooltip
+          <el-tooltip
                         class="item"
                         content="编辑"
                         placement="top"
                         popper-class="testtooltip"
-                        v-if="scope.row.status=='ZC' || scope.row.status=='CH' || scope.row.status=='TH'"
                     >
                         <i
                             class="table-btn icon-bianji iconfont"
                             @click="goEdit(scope.row.projectId)"
                         ></i>
                     </el-tooltip>
+          <!--
                     <el-tooltip
                         class="item"
                         content="删除"
@@ -366,10 +366,10 @@
                                 class="el-icon-delete table-btn"
                             ></i>
                         </el-popconfirm>
-                    </el-tooltip>
+                    </el-tooltip>  -->
                     <el-tooltip class="item" content="审核" placement="top" popper-class="testtooltip">
                         <i class="table-btn el-icon-place" @click="goExamine(scope.row.projectId)"></i>
-                    </el-tooltip> -->
+                    </el-tooltip>
         </template>
       </el-table-column>
     </el-table>
