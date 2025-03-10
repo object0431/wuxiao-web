@@ -181,7 +181,7 @@ import {
       // 审批人信息查询
       async getApprovalInfo() {
         try {
-          const res = await getApprovalInfoAll({"approvalType": "LXSQ","extId": "","hasProvince": "1"})
+          const res = await getApprovalInfoAll({"approvalType": "LXSQ","extId": "","hasProvince": "0"})
           console.log('getApprovalInfo', res);
           
           if (res.rspCode === '0000') {
